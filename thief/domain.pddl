@@ -25,7 +25,7 @@
         :precondition (and 
             (:ontic (= (room ?t) 'r1'))
             ;thief knows guard's position
-            (:epistemic + b [?t](= (position ?g) 'r2'))
+            (:epistemic + b [?t] (= (position ?g) 'r2'))
             ;thief knwos guard does not know theif's position
             (:epistemic + b [?t] $ b [?g] (= (position ?t) 'r1'))
         )

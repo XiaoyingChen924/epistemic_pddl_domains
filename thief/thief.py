@@ -109,11 +109,11 @@ class ExternalFunction:
             # # check if the agt_index can be found
             # assert(entities[agt_index].e_type==E_TYPE.AGENT)
             if "position" in var_name:
-                if state["noise" + tgt_index] == 'f'or state["location"+ agt_index] == None:
+                if state["noise-" + tgt_index] == 'f' or state["position-"+ agt_index] == None:
                     return PDDL_TERNARY.UNKNOWN
-                if state["noise" + tgt_index] == 't'and (state["location"+ agt_index] == 1 or state["location"+ agt_index] == 2):
+                if state["noise-" + tgt_index] == 't' and (state["position-"+ agt_index] == 'r1' or state["position-"+ agt_index] == 'r2'):
                     return PDDL_TERNARY.TRUE
-                if state["peeking"+ agt_index] == 't':
+                if state["peeking-"+ agt_index] == 't':
                     return PDDL_TERNARY.TRUE
             else: 
                 return PDDL_TERNARY.TRUE
