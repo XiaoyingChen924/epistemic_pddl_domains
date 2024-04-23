@@ -12,7 +12,7 @@
     (:variables
         ;can_move: agent a is the commander, commander does not move
         (commander [a,b,c])
-        (can_communiacte [a,b,c])
+        (can_communicate [a,b,c])
         (room [a,b,c,s1,s2,s3])
         (observed [s1,s2,s3])
         (shared [s1,s2,s3])
@@ -28,7 +28,7 @@
         (= (commander c) 0)
         ; b can communicate to the commander
         (= (can_communicate b) 1)
-        (= (can_communicate c) 0)
+        (= (can_communicate c) 1)
         (= (can_communicate a) 0)
         ; agent location assignment
         (= (room a) 'r1')

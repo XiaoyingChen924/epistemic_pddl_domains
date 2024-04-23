@@ -95,9 +95,9 @@
     )
 
     (:goal (and 
-        (= (:ontic (= (searched roomc1) 1)) 1)
-        (= (:ontic (= (searched roomc2) 1)) 1)
-        (= (:ontic (= (searched roomc3) 1)) 1)
+        (:ontic (= (searched roomc1) 1))
+        (:ontic (= (searched roomc2) 1))
+        (:ontic (= (searched roomc3) 1))
         ; (= (:ontic (> (searched r1) 0)) 1)
         ; (= (:ontic (> (searched r2) 0)) 1)
         ; (= (:ontic (> (searched r3) 0)) 1)

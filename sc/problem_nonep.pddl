@@ -105,15 +105,15 @@
 
     (:goal (and 
         ; all the rooms have been searched
-        (= (:ontic (> (searched r1) 0)) 1)
-        (= (:ontic (> (searched r2) 0)) 1)
-        (= (:ontic (> (searched r3) 0)) 1)
-        (= (:ontic (> (searched r4) 0)) 1)
-        (= (:ontic (> (searched r5) 0)) 1)
-        ; (= (:ontic (> (searched r6) 0)) 1)
-        ; (= (:ontic (> (searched r7) 0)) 1)
-        ; (= (:ontic (> (searched r8) 0)) 1)
-        ; (= (:ontic (> (searched r9) 0)) 1)  
+        (:ontic (> (searched r1) 0))
+        (:ontic (> (searched r2) 0))
+        (:ontic (> (searched r3) 0))
+        (:ontic (> (searched r4) 0))
+        (:ontic (> (searched r5) 0))
+        ; (:ontic (> (searched r6) 0))
+        ; (:ontic (> (searched r7) 0))
+        ; (:ontic (> (searched r8) 0))
+        ; (:ontic (> (searched r9) 0))
     ))
 
     (:domains

@@ -21,7 +21,7 @@
     (:action communicate_to_commander
         :parameters (?i - agent, ?s - object, ?r - object)
         :precondition (and 
-            (:ontic (= (can_communiacte ?i) 1))
+            (:ontic (= (can_communicate ?i) 1))
             (:ontic (= (room ?s) (room ?i)))
             (:ontic (= (room ?i) (room_num ?r)))
             (:ontic (= (room ?s) (room_num ?r)))

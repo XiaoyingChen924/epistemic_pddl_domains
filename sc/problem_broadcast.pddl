@@ -110,8 +110,8 @@
         ;(= (:ontic (> (searched r7) 0)) 1)
         ;(= (:ontic (> (searched r8) 0)) 1)
         ;(= (:ontic (> (searched r9) 0)) 1)  
-        (= (:epistemic b [a] (= (observed s1) 't')) 1)
-        (= (:epistemic b [a] (= (observed s2) 't')) 1)
+        (:epistemic + b [a] (= (observed s1) 't'))
+        (:epistemic + b [a] (= (observed s2) 't'))
         ; (= (:epistemic b [b] (= (observed s3) 't')) 1)
     ))
 

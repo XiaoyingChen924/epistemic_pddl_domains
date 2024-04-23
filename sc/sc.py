@@ -183,236 +183,236 @@ class ExternalFunction:
     #     pass
     
 
-    def generate_constrain_dict(self,problem,group_eg_dict):
+#     def generate_constrain_dict(self,problem,group_eg_dict):
 
-        self.logger.debug('')
-        self.logger.debug('generate_constrain_dict')
-        self.logger.debug('group_eg_dict [%s]',group_eg_dict)
-        land_marks = dict()
-        for v_name, ep_goals in group_eg_dict.items():
-            agents = set()
-            land_marks[v_name] = []
-            for ep_str,value in ep_goals:
-                agents_temp = get_agent_names(ep_str)
-                agents.update(agents_temp)
-            obj_index,obj_domains,obj_name,obj_value = handlerObject(ep_str,problem)
+#         self.logger.debug('')
+#         self.logger.debug('generate_constrain_dict')
+#         self.logger.debug('group_eg_dict [%s]',group_eg_dict)
+#         land_marks = dict()
+#         for v_name, ep_goals in group_eg_dict.items():
+#             agents = set()
+#             land_marks[v_name] = []
+#             for ep_str,value in ep_goals:
+#                 agents_temp = get_agent_names(ep_str)
+#                 agents.update(agents_temp)
+#             obj_index,obj_domains,obj_name,obj_value = handlerObject(ep_str,problem)
 
-            variable_dict = get_relative_variables(agents,(obj_index,obj_name,obj_domains),problem)
-            states = _all_states(variable_dict)
-            valid_states = get_valid_states(agents,states,problem,ep_goals,obj_name)
-            if not valid_states == []:
+#             variable_dict = get_relative_variables(agents,(obj_index,obj_name,obj_domains),problem)
+#             states = _all_states(variable_dict)
+#             valid_states = get_valid_states(agents,states,problem,ep_goals,obj_name)
+#             if not valid_states == []:
 
-                land_marks[v_name]={'landmark_type': [[list(range(len(ep_goals)))]],'ep_list': ep_goals,'landmarks': valid_states}
-            else:
-                # cannot achieve group goal in one state
-                ep_state_dict = {}
-                for ep_str,value in ep_goals: 
-                    obj_index,obj_domains,obj_name,obj_value = handlerObject(ep_str,problem)
-                    variable_dict = get_relative_variables(agents,(obj_index,obj_name,[obj_value]),problem)
-                    states = _all_states(variable_dict)
-                    valid_states = get_valid_states(agents,states,problem,[(ep_str,value)],obj_name)
-                    ep_state_dict.update({ep_str: {'states':valid_states,'obj_value':obj_value}})
-                    for key1 in ep_state_dict.keys():
-                        for key2 in ep_state_dict.keys():
-                            if not key1 == key2:
-                                item1 = ep_state_dict[key1]
-                                item2 = ep_state_dict[key2]
+#                 land_marks[v_name]={'landmark_type': [[list(range(len(ep_goals)))]],'ep_list': ep_goals,'landmarks': valid_states}
+#             else:
+#                 # cannot achieve group goal in one state
+#                 ep_state_dict = {}
+#                 for ep_str,value in ep_goals: 
+#                     obj_index,obj_domains,obj_name,obj_value = handlerObject(ep_str,problem)
+#                     variable_dict = get_relative_variables(agents,(obj_index,obj_name,[obj_value]),problem)
+#                     states = _all_states(variable_dict)
+#                     valid_states = get_valid_states(agents,states,problem,[(ep_str,value)],obj_name)
+#                     ep_state_dict.update({ep_str: {'states':valid_states,'obj_value':obj_value}})
+#                     for key1 in ep_state_dict.keys():
+#                         for key2 in ep_state_dict.keys():
+#                             if not key1 == key2:
+#                                 item1 = ep_state_dict[key1]
+#                                 item2 = ep_state_dict[key2]
                                 
-                                if item1['obj_value'] == item2["obj_value"]:
-                                    # there is not constrain since the values are same
-                                    # we might want to get intersection
-                                    pass
-                                else:
-                                    for state in item1['states']:
-                                        if state not in item2['states']:
-                                            if state not in land_marks[v_name]:
-                                                land_marks[v_name].append(state)
-                                    for state in item2['states']:
-                                        if state not in item1['states']:
-                                            if state not in land_marks[v_name]:
-                                                land_marks[v_name].append(state)
-        return land_marks
+#                                 if item1['obj_value'] == item2["obj_value"]:
+#                                     # there is not constrain since the values are same
+#                                     # we might want to get intersection
+#                                     pass
+#                                 else:
+#                                     for state in item1['states']:
+#                                         if state not in item2['states']:
+#                                             if state not in land_marks[v_name]:
+#                                                 land_marks[v_name].append(state)
+#                                     for state in item2['states']:
+#                                         if state not in item1['states']:
+#                                             if state not in land_marks[v_name]:
+#                                                 land_marks[v_name].append(state)
+#         return land_marks
             
                 
-def get_valid_states(agents,states,problem,ep_goals,obj_name):
-    valid_states = []
-    for state in states:
-        current_time = datetime.now()
-        perspectives_dict,epistemic_dict = problem.epistemic_model.epistemicGoalsHandler(ep_goals,"",[(state,"")])
+# def get_valid_states(agents,states,problem,ep_goals,obj_name):
+#     valid_states = []
+#     for state in states:
+#         current_time = datetime.now()
+#         perspectives_dict,epistemic_dict = problem.epistemic_model.epistemicGoalsHandler(ep_goals,"",[(state,"")])
         
-        problem.epistemic_calls += 1
-        problem.epistemic_call_time += datetime.now() - current_time
-        goal_dict = {}
-        # remain_goal_number = list(goal_dict.values()).count(False)
+#         problem.epistemic_calls += 1
+#         problem.epistemic_call_time += datetime.now() - current_time
+#         goal_dict = {}
+#         # remain_goal_number = list(goal_dict.values()).count(False)
         
-        for ep_str,value in ep_goals:
-            if epistemic_dict[ep_str].value == value:
-                goal_dict[ep_str] = True
-            else:
-                goal_dict[ep_str] = False
-        if list(goal_dict.values()).count(False) ==0:
-            filtered_state = _variableFilter(state,obj_name)
-            if filtered_state not in valid_states:
-                valid_states.append(filtered_state)
-    return valid_states
-        # if epistemic_dict[ep_str].value == value:
-        #     print(state)
-        #     filtered_state = self._variableFilter(state,obj_name)
-        #     if filtered_state not in ep_state_dict[ep_str]['states']:
-        #         ep_state_dict[ep_str]['states'].append(filtered_state)
-    # for ep_str,value in ep_goals:
-        # ep_value = ep_str.split(v_name)[1][3:-2]
-        # ep_front = ep_str.split(v_name)[0]
-        # ep_header = format_ep(ep_value,value)
+#         for ep_str,value in ep_goals:
+#             if epistemic_dict[ep_str].value == value:
+#                 goal_dict[ep_str] = True
+#             else:
+#                 goal_dict[ep_str] = False
+#         if list(goal_dict.values()).count(False) ==0:
+#             filtered_state = _variableFilter(state,obj_name)
+#             if filtered_state not in valid_states:
+#                 valid_states.append(filtered_state)
+#     return valid_states
+#         # if epistemic_dict[ep_str].value == value:
+#         #     print(state)
+#         #     filtered_state = self._variableFilter(state,obj_name)
+#         #     if filtered_state not in ep_state_dict[ep_str]['states']:
+#         #         ep_state_dict[ep_str]['states'].append(filtered_state)
+#     # for ep_str,value in ep_goals:
+#         # ep_value = ep_str.split(v_name)[1][3:-2]
+#         # ep_front = ep_str.split(v_name)[0]
+#         # ep_header = format_ep(ep_value,value)
         
-        # variable_dict = get_relative_variables(agents,(obj_index,obj_name,obj_value),problem)
-        # states = _all_states(variable_dict)
+#         # variable_dict = get_relative_variables(agents,(obj_index,obj_name,obj_value),problem)
+#         # states = _all_states(variable_dict)
 
-        # ep_state_dict.update({ep_str: {'states':list(),'obj_value':obj_value}})
+#         # ep_state_dict.update({ep_str: {'states':list(),'obj_value':obj_value}})
         
         
-        # for state in states:
-        #     current_time = datetime.now()
-        #     perspectives_dict,epistemic_dict = problem.epistemic_model.epistemicGoalsHandler([(ep_str,value)],"",[(state,"")])    
-        #     problem.epistemic_calls += 1
-        #     problem.epistemic_call_time += datetime.now() - current_time
+#         # for state in states:
+#         #     current_time = datetime.now()
+#         #     perspectives_dict,epistemic_dict = problem.epistemic_model.epistemicGoalsHandler([(ep_str,value)],"",[(state,"")])    
+#         #     problem.epistemic_calls += 1
+#         #     problem.epistemic_call_time += datetime.now() - current_time
 
-        #     if epistemic_dict[ep_str].value == value:
+#         #     if epistemic_dict[ep_str].value == value:
 
-        #         filtered_state = self._variableFilter(state)
-        #         if filtered_state not in ep_state_dict[ep_str]['states']:
-        #             ep_state_dict[ep_str]['states'].append(filtered_state)
+#         #         filtered_state = self._variableFilter(state)
+#         #         if filtered_state not in ep_state_dict[ep_str]['states']:
+#         #             ep_state_dict[ep_str]['states'].append(filtered_state)
         
 
-    # for ep_str, states in ep_state_dict.items():
+#     # for ep_str, states in ep_state_dict.items():
 
-    #     for state in states:
+#     #     for state in states:
 
-    print(ep_state_dict)
-    # land_marks = []
-    for key1 in ep_state_dict.keys():
-        for key2 in ep_state_dict.keys():
-            if not key1 == key2:
-                item1 = ep_state_dict[key1]
-                item2 = ep_state_dict[key2]
+#     print(ep_state_dict)
+#     # land_marks = []
+#     for key1 in ep_state_dict.keys():
+#         for key2 in ep_state_dict.keys():
+#             if not key1 == key2:
+#                 item1 = ep_state_dict[key1]
+#                 item2 = ep_state_dict[key2]
                 
-                if item1['obj_value'] == item2["obj_value"]:
-                    # there is not constrain since the values are same
-                    # we might want to get intersection
-                    pass
-                else:
-                    for state in item1['states']:
-                        if state not in item2['states']:
-                            if state not in land_marks[v_name]:
-                                land_marks[v_name].append(state)
-                    for state in item2['states']:
-                        if state not in item1['states']:
-                            if state not in land_marks[v_name]:
-                                land_marks[v_name].append(state)
-    print(land_marks)
-    return land_marks
+#                 if item1['obj_value'] == item2["obj_value"]:
+#                     # there is not constrain since the values are same
+#                     # we might want to get intersection
+#                     pass
+#                 else:
+#                     for state in item1['states']:
+#                         if state not in item2['states']:
+#                             if state not in land_marks[v_name]:
+#                                 land_marks[v_name].append(state)
+#                     for state in item2['states']:
+#                         if state not in item1['states']:
+#                             if state not in land_marks[v_name]:
+#                                 land_marks[v_name].append(state)
+#     print(land_marks)
+#     return land_marks
         
-def _variableFilter(state,obj_name):
-    new_state = {}
-    for v_name,value in state.items():
-        flag = True
-        if v_name == obj_name:
-            flag = False
-        else:
-            for filter_str in FILTER_VARIABLES:
-                if filter_str in v_name:
-                    flag = False
-                    break
-        if flag:
-            new_state.update({v_name:value})
-    return new_state
+# def _variableFilter(state,obj_name):
+#     new_state = {}
+#     for v_name,value in state.items():
+#         flag = True
+#         if v_name == obj_name:
+#             flag = False
+#         else:
+#             for filter_str in FILTER_VARIABLES:
+#                 if filter_str in v_name:
+#                     flag = False
+#                     break
+#         if flag:
+#             new_state.update({v_name:value})
+#     return new_state
             
-def handlerObject(ep_str,problem):
-    obj_index = ""
-    variable_reg_str = "\([\w|'|\"|,|-]*\)"
-    variable_list = re.findall(variable_reg_str,ep_str)
-    for variable_pair_str in variable_list:
-        var_temp_list = variable_pair_str[1:-1].split(",")
-        obj_name = var_temp_list[0][1:-1]
-        obj_value = var_temp_list[1][1:-1]
-        obj = problem.variables[obj_name]
-        obj_index = obj.v_parent
-        obj_domains = problem.domains[obj.v_domain_name].d_values
-    return obj_index,obj_domains,obj_name,obj_value
+# def handlerObject(ep_str,problem):
+#     obj_index = ""
+#     variable_reg_str = "\([\w|'|\"|,|-]*\)"
+#     variable_list = re.findall(variable_reg_str,ep_str)
+#     for variable_pair_str in variable_list:
+#         var_temp_list = variable_pair_str[1:-1].split(",")
+#         obj_name = var_temp_list[0][1:-1]
+#         obj_value = var_temp_list[1][1:-1]
+#         obj = problem.variables[obj_name]
+#         obj_index = obj.v_parent
+#         obj_domains = problem.domains[obj.v_domain_name].d_values
+#     return obj_index,obj_domains,obj_name,obj_value
             
       
-def get_agent_names(ep_str):
-    # print(ep_str)
-    agent_set = set()
-    
-    agent_reg_str =  "[b|k|s] (\[[\w|,]*\])* "
-    agent_list_list = re.findall(agent_reg_str,ep_str)
-    for agent_list in agent_list_list:
-        for agent_id in agent_list[1:-1].split(","):
-            agent_set.add(agent_id)
-    return agent_set
-      
-      
-                
-# def get_entities_names(ep_str,problem):
-
+# def get_agent_names(ep_str):
+#     # print(ep_str)
 #     agent_set = set()
-#     object_set = set()
     
 #     agent_reg_str =  "[b|k|s] (\[[\w|,]*\])* "
 #     agent_list_list = re.findall(agent_reg_str,ep_str)
 #     for agent_list in agent_list_list:
 #         for agent_id in agent_list[1:-1].split(","):
 #             agent_set.add(agent_id)
-    
-#     variable_reg_str = "\([\w|'|\"|,|-]*\)"
-#     variable_list = re.findall(variable_reg_str,ep_str)
-#     for variable_pair_str in variable_list:
-#         variable_name = variable_pair_str[1:-1].split(",")[0][1:-1]
-#         object_set.add(problem.variables[variable_name].v_parent)
+#     return agent_set
+      
+      
+                
+# # def get_entities_names(ep_str,problem):
 
-#     return agent_set,object_set,value
+# #     agent_set = set()
+# #     object_set = set()
+    
+# #     agent_reg_str =  "[b|k|s] (\[[\w|,]*\])* "
+# #     agent_list_list = re.findall(agent_reg_str,ep_str)
+# #     for agent_list in agent_list_list:
+# #         for agent_id in agent_list[1:-1].split(","):
+# #             agent_set.add(agent_id)
+    
+# #     variable_reg_str = "\([\w|'|\"|,|-]*\)"
+# #     variable_list = re.findall(variable_reg_str,ep_str)
+# #     for variable_pair_str in variable_list:
+# #         variable_name = variable_pair_str[1:-1].split(",")[0][1:-1]
+# #         object_set.add(problem.variables[variable_name].v_parent)
+
+# #     return agent_set,object_set,value
      
-def get_relative_variables(agents,object_tuple,problem):
-    obj_index,obj_name,obj_value = object_tuple
-    variable_dict = {}
-    domains = problem.domains
-    for v_name, variable in problem.variables.items():
-        index = variable.v_parent
-        if index in agents and v_name[:-len(index)] in AGENT_VARIABLES:
-            variable_dict.update({v_name:domains[variable.v_domain_name].d_values})
-        elif index == obj_index and v_name[:-len(index)] in OBJECT_VARIABLES:
-            if v_name == obj_name:
-                variable_dict.update({v_name:obj_value})
-            else:
-                variable_dict.update({v_name:domains[variable.v_domain_name].d_values})
-    return variable_dict
+# def get_relative_variables(agents,object_tuple,problem):
+#     obj_index,obj_name,obj_value = object_tuple
+#     variable_dict = {}
+#     domains = problem.domains
+#     for v_name, variable in problem.variables.items():
+#         index = variable.v_parent
+#         if index in agents and v_name[:-len(index)] in AGENT_VARIABLES:
+#             variable_dict.update({v_name:domains[variable.v_domain_name].d_values})
+#         elif index == obj_index and v_name[:-len(index)] in OBJECT_VARIABLES:
+#             if v_name == obj_name:
+#                 variable_dict.update({v_name:obj_value})
+#             else:
+#                 variable_dict.update({v_name:domains[variable.v_domain_name].d_values})
+#     return variable_dict
 
-def _all_states(state_dict):
-    states = []
-    if state_dict == {}:
-        return [{}]    
-    key,values = state_dict.popitem()
-    for temp_state in _all_states(state_dict):
-        for value in values:
-            new_state = temp_state.copy()
-            new_state.update({key:value})
-            states.append(new_state)
-    return states
+# def _all_states(state_dict):
+#     states = []
+#     if state_dict == {}:
+#         return [{}]    
+#     key,values = state_dict.popitem()
+#     for temp_state in _all_states(state_dict):
+#         for value in values:
+#             new_state = temp_state.copy()
+#             new_state.update({key:value})
+#             states.append(new_state)
+#     return states
 
-def format_ep(ep_value, value):
-    if value == 0:
-        ep_value = reverse_ep_value(ep_value)
+# def format_ep(ep_value, value):
+#     if value == 0:
+#         ep_value = reverse_ep_value(ep_value)
     
-    # return f'{value}{SPLIT_KEY_WORD}{ep_value}'
-    return (value,ep_value)
+#     # return f'{value}{SPLIT_KEY_WORD}{ep_value}'
+#     return (value,ep_value)
         
         
-def reverse_ep_value(ep_value):
-    if ep_value == 't':
-        return 'f'
-    elif ep_value == 'f':
-        return 't'
-    else:
-        return ep_value
+# def reverse_ep_value(ep_value):
+#     if ep_value == 't':
+#         return 'f'
+#     elif ep_value == 'f':
+#         return 't'
+#     else:
+#         return ep_value
     
