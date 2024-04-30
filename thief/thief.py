@@ -100,7 +100,27 @@ class ExternalFunction:
                 return False
         return True
     
-    def checkVisibility(self,state,agt_index,var_name,entities,variables):
+    # def checkVisibility(self,state,agt_index,var_name,entities,variables):
+    def checkVisibility(self,state,agt_index,var_name,problem):
+        variables = problem.variables
+        entities = problem.entities
+        domains = problem.domains
+        if state["sharing-"] == 1:
+            
+        
+        if "block_in_room" in var_name:
+            if state[var_name] == 1 and state["position-"+agt_index] == room:
+                return PDDL_TERNARY.TRUE
+            else:
+                var_domain_name = variables[var_name].v_domain_name
+                tgt_domain = domains[var_domain_name]
+                total_room_number = len(tgt_domain.v_values)
+                cannot_see_counter = 0
+                for room in tgt_domain.v_values:
+                    if state["block_in_room-"+tgt_index+"-"+room] == 0:
+                        cannot_see_counter += 1
+                if cannot_see_counter == total_room_number-1:
+                    return PDDL_TERNARY.TRUE
         
         try:
             # self.logger.debug('checking seeing for agent [%s] on [%s]  in state [%s]',agt_index,var_name,state)

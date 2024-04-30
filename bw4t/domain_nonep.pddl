@@ -7,8 +7,8 @@
         :parameters (?i - agent, ?r1 - object, ?r2 - object)
         :precondition (and 
             ; (= (:ontic (= (commander ?i) 0)) 1)
-            (= (:ontic (= (location ?i) (location ?r1))) 1)
-            (= (:ontic (= (connected ?r1 ?r2) 1)) 1)
+            (:ontic (= (location ?i) (location ?r1)))
+            (:ontic (= (connected ?r1 ?r2) 1))
             ;  -1 is false, 0 is unknown
         )
         :effect (and 

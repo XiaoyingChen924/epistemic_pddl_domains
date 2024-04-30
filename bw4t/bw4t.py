@@ -114,12 +114,12 @@ class ExternalFunction:
             # # otherwise it checking agent's current location
             # # if 'shared' in var_name or 'secret' in var_name:
             if "observed" in var_name:
-                if state["shared-"+tgt_index] == 'f':
-                    if state["room-"+tgt_index] == state["room-"+agt_index]:
-                        return PDDL_TERNARY.TRUE
-                    return PDDL_TERNARY.FALSE
-                elif state["shared-"+tgt_index] == 't':
+                # if state["shared-"+tgt_index] == 'f':
+                if state["location-"+tgt_index] == state["location-"+agt_index]:
                     return PDDL_TERNARY.TRUE
+                    # return PDDL_TERNARY.FALSE
+                # elif state["shared-"+tgt_index] == 't':
+                #     return PDDL_TERNARY.TRUE
                 # else if the position of the survivor is the same as the agent
                 # then the agent can see the survivor
                 else:
@@ -327,30 +327,30 @@ def _variableFilter(state,obj_name):
             new_state.update({v_name:value})
     return new_state
             
-def handlerObject(ep_str,problem):
-    obj_index = ""
-    variable_reg_str = "\([\w|'|\"|,|-]*\)"
-    variable_list = re.findall(variable_reg_str,ep_str)
-    for variable_pair_str in variable_list:
-        var_temp_list = variable_pair_str[1:-1].split(",")
-        obj_name = var_temp_list[0][1:-1]
-        obj_value = var_temp_list[1][1:-1]
-        obj = problem.variables[obj_name]
-        obj_index = obj.v_parent
-        obj_domains = problem.domains[obj.v_domain_name].d_values
-    return obj_index,obj_domains,obj_name,obj_value
+# def handlerObject(ep_str,problem):
+#     obj_index = ""
+#     variable_reg_str = "\([\w|'|\"|,|-]*\)"
+#     variable_list = re.findall(variable_reg_str,ep_str)
+#     for variable_pair_str in variable_list:
+#         var_temp_list = variable_pair_str[1:-1].split(",")
+#         obj_name = var_temp_list[0][1:-1]
+#         obj_value = var_temp_list[1][1:-1]
+#         obj = problem.variables[obj_name]
+#         obj_index = obj.v_parent
+#         obj_domains = problem.domains[obj.v_domain_name].d_values
+#     return obj_index,obj_domains,obj_name,obj_value
             
       
-def get_agent_names(ep_str):
-    # print(ep_str)
-    agent_set = set()
+# def get_agent_names(ep_str):
+#     # print(ep_str)
+#     agent_set = set()
     
-    agent_reg_str =  "[b|k|s] (\[[\w|,]*\])* "
-    agent_list_list = re.findall(agent_reg_str,ep_str)
-    for agent_list in agent_list_list:
-        for agent_id in agent_list[1:-1].split(","):
-            agent_set.add(agent_id)
-    return agent_set
+#     agent_reg_str =  "[b|k|s] (\[[\w|,]*\])* "
+#     agent_list_list = re.findall(agent_reg_str,ep_str)
+#     for agent_list in agent_list_list:
+#         for agent_id in agent_list[1:-1].split(","):
+#             agent_set.add(agent_id)
+#     return agent_set
       
       
                 

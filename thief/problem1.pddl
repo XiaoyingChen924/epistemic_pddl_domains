@@ -28,13 +28,13 @@
     )
 
     (:goal (and 
-        (:epistemic + b [t] $ b [g] (= (position t) 'r1'))
-        (:epistemic + b [g] $ b [t] (= (position g) 'r2'))
-        (:epistemic + b [t] (= (position t) 'r1'))
-        (:epistemic + b [g] (= (position g) 'r2'))
+        ; (:epistemic + b [t] $ b [g] (= (position t) 'r1'))
+        ; (:epistemic + b [g] $ b [t] (= (position g) 'r2'))
+        ; (:epistemic + b [t] (= (position t) 'r1'))
+        ; (:epistemic + b [g] (= (position g) 'r2'))
         ; (:epistemic + b [t] (= (position g) 'r2'))
         ; (:ontic (= (position t) 'r1'))
-        ; (:ontic (= (goal t) 't'))
+        (:ontic (= (goal t) 't'))
         ; (:epistemic + b [t] (= (position g) 'r2'))
         ; (:epistemic + b [b] (= (observed s1) 't'))
         ; (:epistemic + b [b] (= (observed s2) 't'))

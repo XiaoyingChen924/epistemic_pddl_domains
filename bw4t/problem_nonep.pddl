@@ -12,7 +12,7 @@
     (:variables
         (location [a,b,c,b1,b2,r1,r2,roomc1,roomc2,roomc3,dropzone,frontdz,righthalld,lefthalld,lefthallc,righthallc,frontroomc1,frontroomc2,frontroomc3])
         (connected [roomc1,roomc2,roomc3,dropzone,frontdz,righthalld,lefthalld,lefthallc,righthallc,frontroomc1,frontroomc2,frontroomc3][roomc1,roomc2,roomc3,dropzone,frontdz,righthalld,lefthalld,lefthallc,righthallc,frontroomc1,frontroomc2,frontroomc3])
-        ; (observed [s1,s2,s3])
+        (observed [b1,b2,r1,r2])
         ; (shared [s1,s2,s3])
         (searched [roomc1,roomc2,roomc3,dropzone,frontdz,righthalld,lefthalld,lefthallc,righthallc,frontroomc1,frontroomc2,frontroomc3])
     )
@@ -76,10 +76,12 @@
         ; (= (shared s2) 'f')
         ; (= (shared s3) 'f')
         ; ; dummy values 
-        ; (= (observed s1) 't')
-        ; (= (observed s2) 't')
-        ; (= (observed s3) 't')
+        (= (observed b1) 't')
+        (= (observed b2) 't')
+        (= (observed r1) 't')
+        (= (observed r2) 't')
         ; has the room been searched
+        
         (= (searched lefthallc) 1)
         (= (searched righthallc) 1)
         (= (searched lefthalld) 0)
@@ -95,8 +97,8 @@
     )
 
     (:goal (and 
-        (:ontic (= (searched roomc1) 1))
-        (:ontic (= (searched roomc2) 1))
+        ; (:ontic (= (searched roomc1) 1))
+        ; (:ontic (= (searched roomc2) 1))
         (:ontic (= (searched roomc3) 1))
         ; (= (:ontic (> (searched r1) 0)) 1)
         ; (= (:ontic (> (searched r2) 0)) 1)
@@ -107,14 +109,14 @@
         ;(= (:ontic (> (searched r7) 0)) 1)
         ;(= (:ontic (> (searched r8) 0)) 1)
         ;(= (:ontic (> (searched r9) 0)) 1)  
-        ; (= (:epistemic b [a] (= (observed s1) 't')) 1)
+        (:epistemic + b [a] (= (observed b1) 't'))
         ; (= (:epistemic b [a] (= (observed s2) 't')) 1)
         ; (= (:epistemic b [b] (= (observed s3) 't')) 1)
     ))
 
     (:domains
         (location enumerate ['roomc1','roomc2','roomc3','dropzone','frontdz','righthalld','lefthalld','lefthallc','righthallc','frontroomc1','frontroomc2','frontroomc3'])
-        ; (observed enumerate ['t','f'])
+        (observed enumerate ['t','f'])
         ; (shared enumerate ['t','f'])
         (connected integer [0,1])
         ; (commander integer [0,1])

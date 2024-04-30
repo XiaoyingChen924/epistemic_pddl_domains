@@ -12,7 +12,6 @@
     (:variables
         ;can_move: agent a is the commander, commander does not move
         (commander [a,b,c])
-        (can_communicate [a,b,c])
         (room [a,b,c,s1,s2,s3])
         (observed [s1,s2,s3])
         (shared [s1,s2,s3])
@@ -26,17 +25,13 @@
         (= (commander a) 1)
         (= (commander b) 0)
         (= (commander c) 0)
-        ; b can communicate to the commander
-        (= (can_communicate b) 1)
-        (= (can_communicate c) 1)
-        (= (can_communicate a) 0)
         ; agent location assignment
         (= (room a) 'r1')
-        (= (room b) 'r6')
-        (= (room c) 'r7')
-        (= (room s1) 'r9')
-        (= (room s2) 'r4')
-        (= (room s3) 'r3')
+        (= (room b) 'r4')
+        (= (room c) 'r9')
+        (= (room s1) 'r4')
+        (= (room s2) 'r5')
+        (= (room s3) 'r8')
         ; room number assignment
         (= (room_num r1) 'r1')
         (= (room_num r2) 'r2')
@@ -96,27 +91,28 @@
         (= (searched r1) 1)
         (= (searched r2) 0)
         (= (searched r3) 0)
-        (= (searched r4) 0)
+        (= (searched r4) 1)
         (= (searched r5) 0)
-        (= (searched r6) 1)
-        (= (searched r7) 1)
+        (= (searched r6) 0)
+        (= (searched r7) 0)
         (= (searched r8) 0)
-        (= (searched r9) 0)
+        (= (searched r9) 1)
         
     )
 
     (:goal (and 
-        ; (= (:ontic (> (searched r1) 0)) 1)
-        ; (= (:ontic (> (searched r2) 0)) 1)
-        ; (= (:ontic (> (searched r3) 0)) 1)
-        ; (= (:ontic (> (searched r4) 0)) 1)
-        ; (= (:ontic (> (searched r5) 0)) 1)
-        ; (= (:ontic (> (searched r6) 0)) 1)
-        ;(= (:ontic (> (searched r7) 0)) 1)
-        ;(= (:ontic (> (searched r8) 0)) 1)
-        ;(= (:ontic (> (searched r9) 0)) 1)  
+        (:ontic (> (searched r1) 0))
+        (:ontic (> (searched r2) 0))
+        (:ontic (> (searched r3) 0))
+        (:ontic (> (searched r4) 0))
+        (:ontic (> (searched r5) 0))
+        (:ontic (> (searched r6) 0))
+        (:ontic (> (searched r7) 0))
+        (:ontic (> (searched r8) 0))
+        (:ontic (> (searched r9) 0))
+        (:epistemic + b [a] (= (observed s1) 't'))
         (:epistemic + b [a] (= (observed s2) 't'))
-        ; (= (:epistemic b [a] (= (observed s2) 't')) 1)
+        (:epistemic + b [a] (= (observed s3) 't'))
         ; (= (:epistemic b [b] (= (observed s3) 't')) 1)
     ))
 
@@ -128,8 +124,6 @@
         (shared enumerate ['t','f'])
         (connected integer [0,1])
         (commander integer [0,1])
-        (can_communicate integer [0,1])
-        ; (can_communicate integer [0,1])
         ; 0 indicates that room has not been searched neither occupied
         ; 1 indicates that room is occupied
         ; 2 indicates that room has been searched and it is not occupied 

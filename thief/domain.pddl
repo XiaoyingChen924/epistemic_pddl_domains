@@ -23,28 +23,28 @@
     (:action trick
         :parameters (?t - agent, ?g - agent)
         :precondition (and 
-            (:ontic (= (room ?t) 'r1'))
+            (:ontic (= (position ?t) 'r1'))
             ;thief knows guard's position
             (:epistemic + b [?t] (= (position ?g) 'r2'))
             ;thief knwos guard does not know theif's position
             (:epistemic + b [?t] $ b [?g] (= (position ?t) 'r1'))
         )
         :effect (and 
-           (= (goal ?i) 't')
+           (= (goal ?t) 't')
         )
     )
     ; ambush is the goal condition for the guard
     (:action ambush
         :parameters (?g - agent, ?t - agent)
         :precondition (and 
-            (:ontic (= (room ?g) 'r2'))
+            (:ontic (= (position ?g) 'r2'))
             ;guard knows thief's position
             (:epistemic + b [?g] (= (position ?t) 'r1'))
             ;guard knows thief does not know guard's position
             (:epistemic + b [?g] $ b [?t] (= (position ?g) 'r2')
         )
         :effect (and 
-           (= (goal ?i) 't')
+           (= (goal ?g) 't')
         )
     )
 
