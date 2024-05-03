@@ -1,7 +1,7 @@
 ;Header and description
 
 (define 
-    (domain sc)
+    (domain selective_communication)
 
     (:action move
         :parameters (?i - agent, ?r1 - object, ?r2 - object)
@@ -19,9 +19,11 @@
         )
     )
 
-    (:action communicate_to_commander
+    (:action communicate
         :parameters (?i - agent, ?s - object, ?r - object)
         :precondition (and 
+            ; only specified agents can receive (commander)
+            ; this is shown in the python runner 
             ; only specified agents can communicate to commander
             (:ontic (= (can_communicate ?i) 1))
             (:ontic (= (room ?s) (room ?i)))
@@ -30,7 +32,6 @@
         )
         :effect (and 
             (= (shared ?s) 't')
-            ; every agent knows the location of the survivor
         )
     )
 

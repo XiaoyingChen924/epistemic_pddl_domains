@@ -1,0 +1,28 @@
+Time: 0.351971 s
+
+  --{ Plan }--
+
+1. (observ_b_p4_s)
+2. (comm_p4_b_s)
+3. (observ_c_p9_s)
+4. (observ_a_p1_s)
+5. (move_b_p4_p7)
+6. (observ_b_p7_s)
+7. (move_c_p9_p8)
+8. (observ_c_p8_s)
+9. (comm_p8_c_s)
+10. (move_c_p8_p5)
+11. (observ_c_p5_s)
+12. (comm_p5_c_s)
+13. (move_c_p5_p6)
+14. (observ_c_p6_s)
+15. (move_c_p6_p3)
+16. (observ_c_p3_s)
+17. (move_b_p7_p10)
+18. (observ_b_p10_s)
+19. (move_b_p10_p11)
+20. (observ_b_p11_s)
+21. (move_b_p11_p12)
+22. (observ_b_p12_s)
+23. (move_a_p1_p2)
+24. (observ_a_p2_s)

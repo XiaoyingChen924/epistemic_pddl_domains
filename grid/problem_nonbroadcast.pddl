@@ -12,6 +12,7 @@
     (:variables
         ;can_move: agent a is the commander, commander does not move
         (commander [a,b,c])
+        (receiver [a,b,c])
         (can_communicate [a,b,c])
         (room [a,b,c,s1,s2,s3])
         (observed [s1,s2,s3])
@@ -30,6 +31,10 @@
         (= (can_communicate b) 1)
         (= (can_communicate c) 0)
         (= (can_communicate a) 0)
+        ; only commander can receive messages 
+        (= (receiver a) 1)
+        (= (receiver b) 0)
+        (= (receiver c) 0)
         ; agent location assignment
         (= (room a) 'r1')
         (= (room b) 'r4')
@@ -115,7 +120,7 @@
         ;(= (:ontic (> (searched r7) 0)) 1)
         ;(= (:ontic (> (searched r8) 0)) 1)
         ;(= (:ontic (> (searched r9) 0)) 1)  
-        (:epistemic + b [a] (= (observed s2) 't'))
+        (:epistemic + b [a] (= (observed s1) 't'))
         ; (= (:epistemic b [a] (= (observed s2) 't')) 1)
         ; (= (:epistemic b [b] (= (observed s3) 't')) 1)
     ))
@@ -129,6 +134,7 @@
         (connected integer [0,1])
         (commander integer [0,1])
         (can_communicate integer [0,1])
+        (receiver integer [0,1])
         ; (can_communicate integer [0,1])
         ; 0 indicates that room has not been searched neither occupied
         ; 1 indicates that room is occupied

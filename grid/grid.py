@@ -122,7 +122,9 @@ class ExternalFunction:
                     return PDDL_TERNARY.FALSE
                 elif state["shared-"+tgt_index] == 't':
                     #!!!! add "receive" functionality 
-                    return PDDL_TERNARY.TRUE
+                    if state["receiver-"+agt_index] == 1:
+                        return PDDL_TERNARY.TRUE
+                    return PDDL_TERNARY.FALSE
                 # else if the position of the survivor is the same as the agent
                 # then the agent can see the survivor
                 else:

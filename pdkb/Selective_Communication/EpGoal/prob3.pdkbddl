@@ -1,0 +1,22 @@
+Parsing problem... done!
+Preprocessing problem... done!
+Solving problem... 
+
+Cond effs (orig): 3096 (1080)
+
+
+# Agents: 3
+# Props: 864
+# Acts: 504
+# Effs: 3096
+Depth: 1
+
+Plan Time: 0.04710
+
+Plan Length: 0
+
+done!
+
+Time: 0.347929 s
+
+  --{ Plan }--
