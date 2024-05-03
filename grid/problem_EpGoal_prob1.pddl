@@ -24,17 +24,17 @@
 
     (:init
         ; a is the commander, and a does not move
-        (= (commander a) 1)
+        (= (commander a) 0)
         (= (commander b) 0)
         (= (commander c) 0)
         ; only b can communicate to the commander
         (= (can_communicate b) 1)
-        (= (can_communicate c) 0)
-        (= (can_communicate a) 0)
+        (= (can_communicate c) 1)
+        (= (can_communicate a) 1)
         ; only commander can receive messages 
         (= (receiver a) 1)
-        (= (receiver b) 0)
-        (= (receiver c) 0)
+        (= (receiver b) 1)
+        (= (receiver c) 1)
         ; agent location assignment
         (= (room a) 'r1')
         (= (room b) 'r4')
@@ -111,18 +111,24 @@
     )
 
     (:goal (and 
-        ; (= (:ontic (> (searched r1) 0)) 1)
-        ; (= (:ontic (> (searched r2) 0)) 1)
-        ; (= (:ontic (> (searched r3) 0)) 1)
-        ; (= (:ontic (> (searched r4) 0)) 1)
-        ; (= (:ontic (> (searched r5) 0)) 1)
-        ; (= (:ontic (> (searched r6) 0)) 1)
-        ;(= (:ontic (> (searched r7) 0)) 1)
-        ;(= (:ontic (> (searched r8) 0)) 1)
-        ;(= (:ontic (> (searched r9) 0)) 1)  
+        (:ontic (> (searched r1) 0))
+        (:ontic (> (searched r2) 0))
+        (:ontic (> (searched r3) 0))
+        (:ontic (> (searched r4) 0))
+        (:ontic (> (searched r5) 0))
+        (:ontic (> (searched r6) 0))
+        (:ontic (> (searched r7) 0))
+        (:ontic (> (searched r8) 0))
+        (:ontic (> (searched r9) 0))
+        (:epistemic + b [a] (= (observed s1) 't'))
+        (:epistemic + b [a] (= (observed s2) 't'))
+        (:epistemic + b [a] (= (observed s3) 't'))
+        (:epistemic + b [b] (= (observed s1) 't'))
+        (:epistemic + b [b] (= (observed s2) 't'))
+        (:epistemic + b [b] (= (observed s3) 't'))
+        (:epistemic + b [c] (= (observed s1) 't'))
         (:epistemic + b [c] (= (observed s2) 't'))
-        ; (= (:epistemic b [a] (= (observed s2) 't')) 1)
-        ; (= (:epistemic b [b] (= (observed s3) 't')) 1)
+        (:epistemic + b [c] (= (observed s3) 't'))
     ))
 
     (:domains
