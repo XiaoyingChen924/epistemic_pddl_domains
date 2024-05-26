@@ -1,0 +1,10 @@
+
+undeclared predicate IN_D_ROOMC3 used in domain definition
+
+
+undeclared predicate IN_D_ROOMC3 used in domain definition
+
+Solving...
+/usr/local/lib/python3.6/dist-packages/PDKB_Planning_Library-0.1-py3.6.egg/pdkb/planners/bfws --domain pdkb-domain.pddl  --problem pdkb-problem.pddl --output pdkb-plan.txt --1-BFWS 1
+/usr/local/lib/python3.6/dist-packages/PDKB_Planning_Library-0.1-py3.6.egg/pdkb/planners/bfws --domain pdkb-domain.pddl  --problem pdkb-problem.pddl --output pdkb-plan.txt --BFWS-f5 1 --max_novelty 1
+Done!

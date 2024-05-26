@@ -1,0 +1,65 @@
+ --- OK.
+ Match tree built with 336 nodes.
+
+PDDL problem description loaded: 
+	Domain: GRID
+	Problem: GRID-PROB
+	#Actions: 336
+	#Fluents: 377
+Goals found: 13
+Goals_Edges found: 13
+Starting search with 1-BFWS...
+--[13 / 0]--
+--[12 / 0]--
+--[12 / 1]--
+--[12 / 3]--
+--[11 / 0]--
+--[11 / 11]--
+--[10 / 0]--
+--[10 / 5]--
+--[10 / 6]--
+--[10 / 7]--
+--[10 / 9]--
+--[10 / 11]--
+--[9 / 0]--
+--[9 / 7]--
+--[9 / 9]--
+--[8 / 0]--
+--[8 / 11]--
+--[8 / 12]--
+--[8 / 13]--
+--[8 / 15]--
+--[8 / 16]--
+--[8 / 17]--
+--[8 / 18]--
+--[8 / 19]--
+--[8 / 20]--
+--[8 / 21]--
+--[7 / 0]--
+--[7 / 24]--
+--[4 / 0]--
+--[4 / 8]--
+--[4 / 9]--
+--[4 / 10]--
+--[4 / 11]--
+--[4 / 12]--
+--[4 / 13]--
+--[4 / 14]--
+--[4 / 15]--
+--[4 / 17]--
+--[4 / 18]--
+--[4 / 19]--
+--[4 / 20]--
+--[4 / 21]--
+--[3 / 0]--
+--[3 / 24]--
+--[0 / 0]--
+--[0 / 8]--
+Total time: 0.027969
+Nodes generated during search: 2592
+Nodes expanded during search: 1902
+Plan found with cost: 30
+Fast-BFS search completed in 0.027969 secs
+Solving...
+/usr/local/lib/python3.6/dist-packages/PDKB_Planning_Library-0.1-py3.6.egg/pdkb/planners/bfws --domain pdkb-domain.pddl  --problem pdkb-problem.pddl --output pdkb-plan.txt --1-BFWS 1
+Done!

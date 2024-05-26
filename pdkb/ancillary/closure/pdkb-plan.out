@@ -1,0 +1,26 @@
+
+warning: empty con/disjunction in domain definition. simplifying.
+
+ --- OK.
+ Match tree built with 2 nodes.
+
+PDDL problem description loaded: 
+	Domain: CLOSURE
+	Problem: CLOSURE-PROB
+	#Actions: 2
+	#Fluents: 7
+Goals found: 1
+Goals_Edges found: 1
+Starting search with 1-BFWS...
+--[1 / 0]--
+--[1 / 2]--
+--[0 / 0]--
+--[0 / 4]--
+Total time: 6.90001e-05
+Nodes generated during search: 3
+Nodes expanded during search: 2
+Plan found with cost: 2
+Fast-BFS search completed in 6.90001e-05 secs
+Solving...
+/usr/local/lib/python3.6/dist-packages/PDKB_Planning_Library-0.1-py3.6.egg/pdkb/planners/bfws --domain pdkb-domain.pddl  --problem pdkb-problem.pddl --output pdkb-plan.txt --1-BFWS 1
+Done!

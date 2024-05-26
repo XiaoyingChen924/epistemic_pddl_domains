@@ -1,0 +1,58 @@
+ --- OK.
+ Match tree built with 168 nodes.
+
+PDDL problem description loaded: 
+	Domain: BW4T2
+	Problem: BW4T2-PROB
+	#Actions: 168
+	#Fluents: 233
+Goals found: 7
+Goals_Edges found: 7
+Starting search with 1-BFWS...
+--[7 / 0]--
+--[7 / 2]--
+--[7 / 3]--
+--[7 / 4]--
+--[7 / 5]--
+--[7 / 6]--
+--[6 / 0]--
+--[6 / 5]--
+--[6 / 7]--
+--[5 / 0]--
+--[5 / 5]--
+--[5 / 7]--
+--[5 / 9]--
+--[4 / 0]--
+--[4 / 9]--
+--[3 / 0]--
+--[3 / 5]--
+--[3 / 7]--
+--[3 / 9]--
+--[3 / 10]--
+--[3 / 11]--
+--[2 / 0]--
+--[2 / 7]--
+--[2 / 8]--
+--[2 / 9]--
+--[2 / 11]--
+--[2 / 14]--
+--[2 / 16]--
+--[2 / 18]--
+--[2 / 20]--
+--[2 / 22]--
+--[2 / 24]--
+--[2 / 25]--
+--[2 / 30]--
+--[2 / 31]--
+--[1 / 0]--
+--[1 / 35]--
+--[0 / 0]--
+--[0 / 29]--
+Total time: 0.007806
+Nodes generated during search: 1426
+Nodes expanded during search: 1097
+Plan found with cost: 38
+Fast-BFS search completed in 0.007806 secs
+Solving...
+/usr/local/lib/python3.6/dist-packages/PDKB_Planning_Library-0.1-py3.6.egg/pdkb/planners/bfws --domain pdkb-domain.pddl  --problem pdkb-problem.pddl --output pdkb-plan.txt --1-BFWS 1
+Done!

@@ -1,0 +1,52 @@
+ --- OK.
+ Match tree built with 528 nodes.
+
+PDDL problem description loaded: 
+	Domain: GRID
+	Problem: GRID-PROB
+	#Actions: 528
+	#Fluents: 576
+Goals found: 8
+Goals_Edges found: 8
+Starting search with 1-BFWS...
+--[8 / 0]--
+--[7 / 0]--
+--[7 / 1]--
+--[7 / 3]--
+--[6 / 0]--
+--[6 / 11]--
+--[5 / 0]--
+--[5 / 7]--
+--[5 / 8]--
+--[5 / 9]--
+--[4 / 0]--
+--[4 / 7]--
+--[4 / 8]--
+--[4 / 9]--
+--[4 / 10]--
+--[3 / 0]--
+--[3 / 2]--
+--[3 / 3]--
+--[3 / 4]--
+--[3 / 7]--
+--[3 / 9]--
+--[3 / 11]--
+--[2 / 0]--
+--[2 / 20]--
+--[2 / 21]--
+--[2 / 22]--
+--[2 / 23]--
+--[2 / 24]--
+--[2 / 25]--
+--[1 / 0]--
+--[1 / 30]--
+--[0 / 0]--
+--[0 / 34]--
+Total time: 0.065791
+Nodes generated during search: 5310
+Nodes expanded during search: 4343
+Plan found with cost: 49
+Fast-BFS search completed in 0.065791 secs
+Solving...
+/usr/local/lib/python3.6/dist-packages/PDKB_Planning_Library-0.1-py3.6.egg/pdkb/planners/bfws --domain pdkb-domain.pddl  --problem pdkb-problem.pddl --output pdkb-plan.txt --1-BFWS 1
+Done!

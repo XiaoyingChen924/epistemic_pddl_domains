@@ -1,0 +1,39 @@
+ --- OK.
+ Match tree built with 108 nodes.
+
+PDDL problem description loaded: 
+	Domain: GRID
+	Problem: GRID-PROB
+	#Actions: 108
+	#Fluents: 180
+Goals found: 9
+Goals_Edges found: 9
+Starting search with 1-BFWS...
+--[9 / 0]--
+--[9 / 2]--
+--[8 / 0]--
+--[8 / 5]--
+--[7 / 0]--
+--[7 / 4]--
+--[6 / 0]--
+--[6 / 4]--
+--[5 / 0]--
+--[5 / 6]--
+--[4 / 0]--
+--[4 / 6]--
+--[3 / 0]--
+--[3 / 7]--
+--[2 / 0]--
+--[2 / 5]--
+--[1 / 0]--
+--[1 / 6]--
+--[0 / 0]--
+--[0 / 6]--
+Total time: 0.00039
+Nodes generated during search: 161
+Nodes expanded during search: 27
+Plan found with cost: 15
+Fast-BFS search completed in 0.00039 secs
+Solving...
+/usr/local/lib/python3.6/dist-packages/PDKB_Planning_Library-0.1-py3.6.egg/pdkb/planners/bfws --domain pdkb-domain.pddl  --problem pdkb-problem.pddl --output pdkb-plan.txt --1-BFWS 1
+Done!

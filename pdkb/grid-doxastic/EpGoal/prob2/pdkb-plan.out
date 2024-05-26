@@ -1,0 +1,88 @@
+
+
+task contains conditional effects. turning off state domination.
+
+ --- OK.
+ Match tree built with 156 nodes.
+
+PDDL problem description loaded: 
+	Domain: GRID
+	Problem: GRID-PROB
+	#Actions: 156
+	#Fluents: 294
+Goals found: 30
+Goals_Edges found: 30
+Starting search with 1-BFWS...
+--[21 / 0]--
+--[21 / 3]--
+--[19 / 0]--
+--[19 / 6]--
+--[18 / 0]--
+--[18 / 4]--
+--[18 / 6]--
+--[17 / 0]--
+--[17 / 4]--
+--[17 / 6]--
+--[16 / 0]--
+--[16 / 7]--
+--[16 / 9]--
+--[15 / 0]--
+--[15 / 7]--
+--[13 / 0]--
+--[13 / 9]--
+--[12 / 0]--
+--[12 / 6]--
+--[12 / 9]--
+--[12 / 10]--
+--[10 / 0]--
+--[10 / 9]--
+--[9 / 0]--
+--[9 / 7]--
+--[9 / 9]--
+--[8 / 0]--
+--[8 / 7]--
+--[8 / 10]--
+--[7 / 0]--
+--[7 / 7]--
+--[7 / 10]--
+--[7 / 13]--
+--[6 / 0]--
+--[6 / 10]--
+--[6 / 13]--
+--[6 / 14]--
+--[6 / 16]--
+--[6 / 18]--
+--[6 / 19]--
+--[6 / 20]--
+--[6 / 21]--
+--[6 / 22]--
+--[6 / 24]--
+--[6 / 26]--
+--[6 / 28]--
+--[5 / 0]--
+--[5 / 23]--
+--[5 / 25]--
+--[5 / 26]--
+--[3 / 0]--
+--[3 / 24]--
+--[3 / 25]--
+--[3 / 26]--
+--[3 / 27]--
+--[3 / 28]--
+--[3 / 29]--
+--[3 / 30]--
+--[3 / 31]--
+--[3 / 34]--
+--[1 / 0]--
+--[1 / 29]--
+--[1 / 30]--
+--[0 / 0]--
+--[0 / 7]--
+Total time: 0.052452
+Nodes generated during search: 4803
+Nodes expanded during search: 2503
+Plan found with cost: 53
+Fast-BFS search completed in 0.052452 secs
+Solving...
+/usr/local/lib/python3.6/dist-packages/PDKB_Planning_Library-0.1-py3.6.egg/pdkb/planners/bfws --domain pdkb-domain.pddl  --problem pdkb-problem.pddl --output pdkb-plan.txt --1-BFWS 1
+Done!

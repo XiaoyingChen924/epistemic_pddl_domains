@@ -1,0 +1,45 @@
+
+
+task contains conditional effects. turning off state domination.
+
+ --- OK.
+ Match tree built with 117 nodes.
+
+PDDL problem description loaded: 
+	Domain: GRID
+	Problem: GRID-PROB
+	#Actions: 117
+	#Fluents: 207
+Goals found: 9
+Goals_Edges found: 9
+Starting search with 1-BFWS...
+--[9 / 0]--
+--[9 / 3]--
+--[8 / 0]--
+--[8 / 5]--
+--[7 / 0]--
+--[7 / 4]--
+--[6 / 0]--
+--[6 / 4]--
+--[6 / 5]--
+--[6 / 6]--
+--[5 / 0]--
+--[5 / 7]--
+--[4 / 0]--
+--[4 / 7]--
+--[3 / 0]--
+--[3 / 8]--
+--[2 / 0]--
+--[2 / 6]--
+--[1 / 0]--
+--[1 / 7]--
+--[0 / 0]--
+--[0 / 7]--
+Total time: 0.00053
+Nodes generated during search: 161
+Nodes expanded during search: 27
+Plan found with cost: 15
+Fast-BFS search completed in 0.00053 secs
+Solving...
+/usr/local/lib/python3.6/dist-packages/PDKB_Planning_Library-0.1-py3.6.egg/pdkb/planners/bfws --domain pdkb-domain.pddl  --problem pdkb-problem.pddl --output pdkb-plan.txt --1-BFWS 1
+Done!

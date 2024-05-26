@@ -1,0 +1,33 @@
+
+warning: empty con/disjunction in domain definition. simplifying.
+
+
+warning: empty con/disjunction in domain definition. simplifying.
+
+
+
+task contains conditional effects. turning off state domination.
+
+ --- OK.
+ Match tree built with 2 nodes.
+
+PDDL problem description loaded: 
+	Domain: ENVELOPE
+	Problem: ENVELOPE-PROB
+	#Actions: 2
+	#Fluents: 48
+Goals found: 4
+Goals_Edges found: 4
+Starting search with 1-BFWS...
+--[2 / 0]--
+--[2 / 22]--
+--[0 / 0]--
+--[0 / 44]--
+Total time: 7.69998e-05
+Nodes generated during search: 4
+Nodes expanded during search: 2
+Plan found with cost: 2
+Fast-BFS search completed in 7.69998e-05 secs
+Solving...
+/usr/local/lib/python3.6/dist-packages/PDKB_Planning_Library-0.1-py3.6.egg/pdkb/planners/bfws --domain pdkb-domain.pddl  --problem pdkb-problem.pddl --output pdkb-plan.txt --1-BFWS 1
+Done!
