@@ -64,8 +64,6 @@
             ; agent can move
             (= (movable ?i) 1)
             ; the locations are connected
-            ; the '1' can be changed into any number, or it can be 
-            ; interpreted as blocked (?l2 unknown) 
             (= (@ep ("+ b [?i]") (= (blocked ?l2) 1)) ep.unknown)
         )
         :effect (
@@ -90,7 +88,6 @@
             ; 2 means searched
             ; agent cannot entry a room if its been ocuuiped by another agent
             (!= (searched ?l2) 1)
-            ; if 0 is changed to '1', ep.true changed to ep.false
              (= (@ep ("+ b [?i]") (= (blocked ?l2) 0)) ep.true)
         )
         :effect (
