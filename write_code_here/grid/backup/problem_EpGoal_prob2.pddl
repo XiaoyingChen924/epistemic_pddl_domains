@@ -23,7 +23,7 @@
     )
 
     (:init
-        ; a is the commander, and a does not move
+        ; commander does not move
         (= (commander a) 0)
         (= (commander b) 0)
         (= (commander c) 0)
@@ -31,7 +31,7 @@
         (= (can_communicate b) 1)
         (= (can_communicate c) 1)
         (= (can_communicate a) 1)
-        ; only commander can receive messages 
+        ; only commander can receive messages (or no one is commander)
         (= (receiver a) 1)
         (= (receiver b) 1)
         (= (receiver c) 1)

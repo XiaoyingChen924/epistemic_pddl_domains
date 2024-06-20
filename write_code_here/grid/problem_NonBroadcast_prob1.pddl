@@ -1,5 +1,5 @@
 ( define
-    (problem ep_prob1)
+    (problem non_boardcast_prob1)
     (:domain grid)
 
     (:agents
@@ -16,17 +16,17 @@
         (assign (agent_loc b) 'r4')
         (assign (agent_loc c) 'r9')
 
-        (assign (movable a) 1)
+        (assign (movable a) 0)
         (assign (movable b) 1)
         (assign (movable c) 1)
 
-        (assign (sharable a) 1)
+        (assign (sharable a) 0)
         (assign (sharable b) 1)
-        (assign (sharable c) 1)
+        (assign (sharable c) 0)
 
         (assign (receivable a) 1)
-        (assign (receivable b) 1)
-        (assign (receivable c) 1)
+        (assign (receivable b) 0)
+        (assign (receivable c) 0)
 
         (assign (survivor_loc s1) 'r4')
         (assign (survivor_loc s2) 'r5')
@@ -170,7 +170,6 @@
         (assign (blocked r7) 0)
         (assign (blocked r8) 0)
         (assign (blocked r9) 0)
-
         (assign (loc_shared r1) 0)
         (assign (loc_shared r2) 0)
         (assign (loc_shared r3) 0)
@@ -226,12 +225,6 @@
         (= (@ep ("+ b [a]") (= (survivor_loc s1) 'r4')) ep.true)
         (= (@ep ("+ b [a]") (= (survivor_loc s2) 'r5')) ep.true)
         (= (@ep ("+ b [a]") (= (survivor_loc s3) 'r8')) ep.true)
-        (= (@ep ("+ b [b]") (= (survivor_loc s1) 'r4')) ep.true)
-        (= (@ep ("+ b [b]") (= (survivor_loc s2) 'r5')) ep.true)
-        (= (@ep ("+ b [b]") (= (survivor_loc s3) 'r8')) ep.true)
-        (= (@ep ("+ b [c]") (= (survivor_loc s1) 'r4')) ep.true)
-        (= (@ep ("+ b [c]") (= (survivor_loc s2) 'r5')) ep.true)
-        (= (@ep ("+ b [c]") (= (survivor_loc s3) 'r8')) ep.true)
     ))
 
     (:ranges

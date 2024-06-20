@@ -1,9 +1,9 @@
 ( define
-    (problem boardcast_prob1)
+    (problem non_boardcast_prob2)
     (:domain grid)
 
     (:agents
-        a b c - agent
+        a b c d - agent
     )
     (:objects
         s1 s2 s3 - survivor
@@ -15,18 +15,22 @@
         (assign (agent_loc a) 'r1')
         (assign (agent_loc b) 'r4')
         (assign (agent_loc c) 'r9')
+        (assign (agent_loc d) 'r2')
 
         (assign (movable a) 0)
         (assign (movable b) 1)
         (assign (movable c) 1)
+        (assign (movable d) 1)
 
-        (assign (sharable a) 1)
+        (assign (sharable a) 0)
         (assign (sharable b) 1)
-        (assign (sharable c) 1)
+        (assign (sharable c) 0)
+        (assign (sharable d) 0)
 
         (assign (receivable a) 1)
         (assign (receivable b) 0)
         (assign (receivable c) 0)
+        (assign (receivable d) 0)
 
         (assign (survivor_loc s1) 'r4')
         (assign (survivor_loc s2) 'r5')
@@ -171,7 +175,55 @@
         (assign (blocked r8) 0)
         (assign (blocked r9) 0)
 
-        
+        (assign (loc_shared r1) 0)
+        (assign (loc_shared r2) 0)
+        (assign (loc_shared r3) 0)
+        (assign (loc_shared r4) 0)
+        (assign (loc_shared r5) 0)
+        (assign (loc_shared r6) 0)
+        (assign (loc_shared r7) 0)
+        (assign (loc_shared r8) 0)
+        (assign (loc_shared r9) 0)
+
+        (assign (loc_sensed r1 a) 0)
+        (assign (loc_sensed r2 a) 0)
+        (assign (loc_sensed r3 a) 0)
+        (assign (loc_sensed r4 a) 0)
+        (assign (loc_sensed r5 a) 0)
+        (assign (loc_sensed r6 a) 0)
+        (assign (loc_sensed r7 a) 0)
+        (assign (loc_sensed r8 a) 0)
+        (assign (loc_sensed r9 a) 0)
+
+        (assign (loc_sensed r1 b) 0)
+        (assign (loc_sensed r2 b) 0)
+        (assign (loc_sensed r3 b) 0)
+        (assign (loc_sensed r4 b) 0)
+        (assign (loc_sensed r5 b) 0)
+        (assign (loc_sensed r6 b) 0)
+        (assign (loc_sensed r7 b) 0)
+        (assign (loc_sensed r8 b) 0)
+        (assign (loc_sensed r9 b) 0)
+
+        (assign (loc_sensed r1 c) 0)
+        (assign (loc_sensed r2 c) 0)
+        (assign (loc_sensed r3 c) 0)
+        (assign (loc_sensed r4 c) 0)
+        (assign (loc_sensed r5 c) 0)
+        (assign (loc_sensed r6 c) 0)
+        (assign (loc_sensed r7 c) 0)
+        (assign (loc_sensed r8 c) 0)
+        (assign (loc_sensed r9 c) 0)
+
+        (assign (loc_sensed r1 d) 0)
+        (assign (loc_sensed r2 d) 0)
+        (assign (loc_sensed r3 d) 0)
+        (assign (loc_sensed r4 d) 0)
+        (assign (loc_sensed r5 d) 0)
+        (assign (loc_sensed r6 d) 0)
+        (assign (loc_sensed r7 d) 0)
+        (assign (loc_sensed r8 d) 0)
+        (assign (loc_sensed r9 d) 0)
     )
 
     (:goal (and 
@@ -200,6 +252,8 @@
         (receivable integer [0,1])
         (blockable integer [0,1])
         (blocked integer [0,1])
+        (loc_shared integer [0,1])
+        (loc_sensed integer [0,1])
         ; 0 indicates that room has not been searched neither occupied
         ; 1 indicates that room is occupied
         ; 2 indicates that room has been searched and it is not occupied 
@@ -210,6 +264,7 @@
         (static (agent_loc a) [])
         (static (agent_loc b) [])
         (static (agent_loc c) [])
+        (static (agent_loc d) [])
 
         (static (survivor_loc s1) [])
         (static (survivor_loc s2) [])
@@ -332,14 +387,17 @@
         (static (sharable a) [])
         (static (sharable b) [])
         (static (sharable c) [])
+        (static (sharable d) [])
 
         (static (movable a) [])
         (static (movable b) [])
         (static (movable c) [])
+        (static (movable d) [])
 
         (static (receivable a) [])
         (static (receivable b) [])
         (static (receivable c) [])
+        (static (receivable d) [])
 
         (static (blockable r1) [])
         (static (blockable r2) [])
@@ -361,6 +419,55 @@
         (static (blocked r8) [])
         (static (blocked r9) [])
 
+        (static (loc_shared r1) [])
+        (static (loc_shared r2) [])
+        (static (loc_shared r3) [])
+        (static (loc_shared r4) [])
+        (static (loc_shared r5) [])
+        (static (loc_shared r6) [])
+        (static (loc_shared r7) [])
+        (static (loc_shared r8) [])
+        (static (loc_shared r9) [])
+
+        (static (loc_sensed r1 a) [])
+        (static (loc_sensed r2 a) [])
+        (static (loc_sensed r3 a) [])
+        (static (loc_sensed r4 a) [])
+        (static (loc_sensed r5 a) [])
+        (static (loc_sensed r6 a) [])
+        (static (loc_sensed r7 a) [])
+        (static (loc_sensed r8 a) [])
+        (static (loc_sensed r9 a) [])
+
+        (static (loc_sensed r1 b) [])
+        (static (loc_sensed r2 b) [])
+        (static (loc_sensed r3 b) [])
+        (static (loc_sensed r4 b) [])
+        (static (loc_sensed r5 b) [])
+        (static (loc_sensed r6 b) [])
+        (static (loc_sensed r7 b) [])
+        (static (loc_sensed r8 b) [])
+        (static (loc_sensed r9 b) [])
+
+        (static (loc_sensed r1 c) [])
+        (static (loc_sensed r2 c) [])
+        (static (loc_sensed r3 c) [])
+        (static (loc_sensed r4 c) [])
+        (static (loc_sensed r5 c) [])
+        (static (loc_sensed r6 c) [])
+        (static (loc_sensed r7 c) [])
+        (static (loc_sensed r8 c) [])
+        (static (loc_sensed r9 c) [])
+
+        (static (loc_sensed r1 d) [])
+        (static (loc_sensed r2 d) [])
+        (static (loc_sensed r3 d) [])
+        (static (loc_sensed r4 d) [])
+        (static (loc_sensed r5 d) [])
+        (static (loc_sensed r6 d) [])
+        (static (loc_sensed r7 d) [])
+        (static (loc_sensed r8 d) [])
+        (static (loc_sensed r9 d) [])
     )
 )
 
